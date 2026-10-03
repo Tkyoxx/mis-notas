@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 48" width="1200" height="48">
+  <defs>
+    <linearGradient id="line" x1="0" x2="1200" y1="0" y2="0" gradientUnits="userSpaceOnUse" spreadMethod="repeat">
+      <stop offset="0" stop-color="#FF4F8B"/>
+      <stop offset=".33" stop-color="#A26BFF"/>
+      <stop offset=".66" stop-color="#3D97FF"/>
+      <stop offset="1" stop-color="#FF4F8B"/>
+      <animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="1200 0" dur="8s" repeatCount="indefinite"/>
+    </linearGradient>
+    <linearGradient id="fade" x1="0" x2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".18" stop-color="#fff"/>
+      <stop offset=".82" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="m"><rect width="1200" height="48" fill="url(#fade)"/></mask>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter>
+    <path id="spark" d="M0 -7 C1 -1 1 -1 7 0 C1 1 1 1 0 7 C-1 1 -1 1 -7 0 C-1 -1 -1 -1 0 -7Z"/>
+  </defs>
+  <g mask="url(#m)">
+    <rect x="0" y="23" width="1200" height="2" rx="1" fill="url(#line)"/>
+    <circle cy="24" r="6" fill="#ffd1e3" filter="url(#glow)">
+      <animate attributeName="cx" values="120;1080;120" dur="7s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/>
+    </circle>
+    <circle cy="24" r="2.5" fill="#fff">
+      <animate attributeName="cx" values="120;1080;120" dur="7s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/>
+    </circle>
+  </g>
+  <g fill="#FFB8D2">
+    <use href="#spark" transform="translate(600 24)">
+      <animateTransform attributeName="transform" type="scale" additive="sum" values="0.6;1.3;0.6" dur="2.4s" repeatCount="indefinite"/>
+    </use>
+  </g>
+  <g fill="#C9B6FF" opacity=".9">
+    <use href="#spark" transform="translate(420 12) scale(.6)">
+      <animate attributeName="opacity" values="0;1;0" dur="3s" begin=".8s" repeatCount="indefinite"/>
+    </use>
+    <use href="#spark" transform="translate(790 36) scale(.5)">
+      <animate attributeName="opacity" values="0;1;0" dur="3.4s" begin="1.6s" repeatCount="indefinite"/>
+    </use>
+  </g>
+</svg>
