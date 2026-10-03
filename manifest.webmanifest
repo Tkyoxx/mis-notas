@@ -1,0 +1,9 @@
+{
+  "name": "Mis Notas",
+  "short_name": "Notas",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F1F8",
+  "theme_color": "#F4F1F8",
+  "icons": [{ "src": "icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }, { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

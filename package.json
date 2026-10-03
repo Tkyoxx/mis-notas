@@ -1,0 +1,92 @@
+{
+  "name": "mis-notas",
+  "productName": "Mis Notas",
+  "version": "1.0.0",
+  "description": "Notas, poemas y cosas lindas, con tu música de Spotify.",
+  "author": "Tkyo0x",
+  "main": "desktop/main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "web": "node server.js --open",
+    "icon": "electron desktop/make-icon.js",
+    "build": "electron-builder --win nsis --x64",
+    "build:carpeta": "electron-builder --win dir --x64"
+  },
+  "build": {
+    "appId": "com.misnotas.app",
+    "productName": "Mis Notas",
+    "copyright": "Copyright © 2026 Tkyo0x",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "index.html",
+      "styles.css",
+      "lyrics.css",
+      "yt.html",
+      "icon.svg",
+      "manifest.webmanifest",
+      "app.js",
+      "lyrics.js",
+      "extras.css",
+      "extras.js",
+      "spotify.js",
+      "icons.js",
+      "sync.js",
+      "server.js",
+      "video-search.js",
+      "remote.js",
+      "fonts/**",
+      "desktop/main.js",
+      "desktop/preload.js",
+      "build/icon.png",
+      "package.json"
+    ],
+    "asar": true,
+    "compression": "maximum",
+    "electronLanguages": [
+      "es",
+      "es-419",
+      "en-US"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Mis Notas",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false,
+      "artifactName": "Mis-Notas-Instalador-${version}.exe"
+    },
+    "electronFuses": {
+      "runAsNode": false,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": false,
+      "enableEmbeddedAsarIntegrityValidation": true,
+      "onlyLoadAppFromAsar": true,
+      "grantFileProtocolExtraPrivileges": false
+    }
+  },
+  "devDependencies": {
+    "electron": "^44.4.5",
+    "electron-builder": "^26.15.3"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  }
+}

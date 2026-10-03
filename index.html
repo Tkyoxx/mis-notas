@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F4F1F8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Mis Notas</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="lyrics.css">
+  <link rel="stylesheet" href="extras.css">
+</head>
+<body>
+
+  <div id="island" class="island off" role="button" tabindex="0" aria-label="Música">
+    <div class="isl-compact">
+      <div class="isl-art"><img alt=""><i data-ic="spotify"></i></div>
+      <div class="isl-title">Conectar música</div>
+      <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    </div>
+
+    <div class="isl-exp isl-player">
+      <div class="pl-row">
+        <img class="pl-cover" alt="">
+        <div class="pl-meta">
+          <div class="pl-name"><span></span></div>
+          <div class="pl-artist"></div>
+        </div>
+        <button class="pl-btn sm" data-sp="lyrics" title="Letra en cascada (L)"><i data-ic="mic"></i></button>
+        <button class="pl-btn sm" data-sp="open" title="Buscar música"><i data-ic="listMusic"></i></button>
+      </div>
+      <div class="pl-prog">
+        <span class="t0">0:00</span>
+        <div class="pl-bar"><div class="pl-fill"></div></div>
+        <span class="t1">0:00</span>
+      </div>
+      <div class="pl-ctrls">
+        <button class="pl-btn sm" data-sp="shuffle" title="Aleatorio"><i data-ic="shuffle"></i></button>
+        <button class="pl-btn" data-sp="prev" title="Anterior"><i data-ic="prev"></i></button>
+        <button class="pl-btn big" data-sp="toggle" title="Reproducir / pausar"><i data-ic="play" class="i-play"></i><i data-ic="pause" class="i-pause"></i></button>
+        <button class="pl-btn" data-sp="next" title="Siguiente"><i data-ic="next"></i></button>
+        <button class="pl-btn sm" data-sp="repeat" title="Repetir"><i data-ic="repeat"></i></button>
+      </div>
+      <div class="pl-vol">
+        <button class="pl-mute" data-sp="mute" title="Silenciar"><i data-ic="vol"></i></button>
+        <input class="range" type="range" min="0" max="100" value="50" aria-label="Volumen">
+        <span class="pl-dev"></span>
+      </div>
+    </div>
+
+    <div class="isl-exp isl-msg">
+      <div class="msg-ic"><i data-ic="spotify"></i></div>
+      <div class="msg-t"></div>
+      <div class="msg-s"></div>
+      <div class="msg-btns"></div>
+    </div>
+  </div>
+
+  <div id="stage" class="stage">
+    <div class="blobs" aria-hidden="true"><i></i><i></i><i></i></div>
+    <main id="home" class="home">
+      <div class="home-inner">
+        <header class="home-head">
+          <div class="head-row">
+            <p class="greet" id="greet"></p>
+            <div class="head-btns">
+              <button class="icon-btn" id="btn-diary" title="Tu diario y calendario"><i data-ic="calendar"></i></button>
+              <button class="icon-btn" id="btn-settings" title="Ajustes"><i data-ic="settings"></i></button>
+            </div>
+          </div>
+          <h1 class="big-title" id="big-title">Mis notas</h1>
+          <label class="search">
+            <i data-ic="search"></i>
+            <input id="search" type="search" placeholder="Buscar en tus notas" autocomplete="off">
+          </label>
+          <div class="chips" id="chips"></div>
+        </header>
+        <div class="quote" id="quote"></div>
+        <section id="list"></section>
+      </div>
+    </main>
+  </div>
+
+  <nav class="bar" id="bar">
+    <div class="bar-l">
+      <button class="round ghost" id="btn-music" title="Música">
+        <i data-ic="music"></i>
+        <span class="mini-eq"><i></i><i></i><i></i></span>
+      </button>
+      <button class="round ghost lyr" id="btn-lyrics" title="Letra en cascada (L)"><i data-ic="mic"></i></button>
+    </div>
+    <span class="bar-count" id="count"></span>
+    <button class="round compose" id="btn-new" title="Nueva nota"><i data-ic="compose"></i></button>
+  </nav>
+
+  <div id="scrim" class="scrim"></div>
+
+  <section id="editor" class="editor papered" aria-hidden="true">
+    <header class="ed-top">
+      <button class="back" id="ed-back"><i data-ic="back"></i><span>Notas</span></button>
+      <span class="sp"></span>
+      <button class="tbtn" id="ed-song" title="Canción de esta nota"><i data-ic="music"></i></button>
+      <button class="tbtn fav" id="ed-fav" title="Favorita"><i data-ic="heart" class="h-off"></i><i data-ic="heartFill" class="h-on"></i></button>
+      <button class="tbtn" id="ed-more" title="Más"><i data-ic="more"></i></button>
+    </header>
+    <div class="ed-scroll" id="ed-scroll">
+      <div class="paper" id="paper">
+        <div class="stickers" id="stickers"></div>
+        <button class="cover" id="ed-cover" title="Cambiar ícono">🌸</button>
+        <div class="note-song" id="ed-songcard" hidden></div>
+        <textarea class="ed-title" id="ed-title" rows="1" placeholder="Título"></textarea>
+        <div class="ed-meta" id="ed-meta"></div>
+        <div class="ed-body" id="ed-body" contenteditable="true" spellcheck="true" data-ph="Escribe algo bonito…"></div>
+      </div>
+    </div>
+
+    <div class="tray" id="tray"></div>
+    <div class="ed-tools" id="ed-tools">
+      <button class="tool" data-tool="format" title="Formato"><i data-ic="type"></i></button>
+      <button class="tool" data-tool="check" title="Lista de pendientes"><i data-ic="checks"></i></button>
+      <button class="tool" data-tool="font" title="Letra"><span class="aa">Aa</span></button>
+      <button class="tool" data-tool="paper" title="Papel y color"><i data-ic="palette"></i></button>
+      <button class="tool" data-tool="sticker" title="Stickers"><i data-ic="smile"></i></button>
+      <button class="tool" data-tool="media" title="Foto o dibujo"><i data-ic="image"></i></button>
+    </div>
+  </section>
+
+  <div id="scrim-top" class="scrim top"></div>
+
+  <section id="music" class="sheet tall">
+    <div class="sheet-grab"></div>
+    <header class="sheet-head">
+      <h2>Música <span class="h-emoji">🎧</span></h2>
+      <button class="close-btn" data-close><i data-ic="x"></i></button>
+    </header>
+    <div class="sheet-search" id="music-search">
+      <label class="search">
+        <i data-ic="search"></i>
+        <input id="sp-q" type="search" placeholder="Canciones, artistas, playlists…" autocomplete="off">
+      </label>
+    </div>
+    <div class="sheet-body" id="music-body"></div>
+  </section>
+
+  <section id="pair" class="sheet">
+    <div class="sheet-grab"></div>
+    <header class="sheet-head">
+      <h2>Tu celular <span class="h-emoji">📱</span></h2>
+      <button class="close-btn" data-close><i data-ic="x"></i></button>
+    </header>
+    <div class="sheet-body" id="pair-body"></div>
+  </section>
+
+  <section id="settings" class="sheet">
+    <div class="sheet-grab"></div>
+    <header class="sheet-head">
+      <h2>Ajustes</h2>
+      <button class="close-btn" data-close><i data-ic="x"></i></button>
+    </header>
+    <div class="sheet-body">
+      <p class="group-label">Tú</p>
+      <div class="group">
+        <label class="cell">
+          <span class="cell-ic" style="background:#FF6F9C"><i data-ic="user"></i></span>
+          <span class="lbl">Tu nombre</span>
+          <input class="cell-input" id="set-name" placeholder="Opcional" maxlength="24">
+        </label>
+      </div>
+
+      <p class="group-label">Apariencia</p>
+      <div class="group">
+        <div class="cell">
+          <span class="cell-ic" style="background:#5E5CE6"><i data-ic="moon"></i></span>
+          <span class="lbl">Tema</span>
+          <div class="seg" id="set-theme">
+            <button data-v="auto">Auto</button><button data-v="light">Claro</button><button data-v="dark">Oscuro</button>
+          </div>
+        </div>
+        <div class="cell">
+          <span class="cell-ic" style="background:#FF9F0A"><i data-ic="palette"></i></span>
+          <span class="lbl">Color</span>
+          <div class="dots" id="set-accent"></div>
+        </div>
+        <div class="cell">
+          <span class="cell-ic" style="background:#30B0C7"><i data-ic="sparkles"></i></span>
+          <span class="lbl">Animaciones<small class="cell-sub" id="set-motion-sub"></small></span>
+          <div class="seg" id="set-motion">
+            <button data-v="auto">Auto</button><button data-v="fluid">Fluidas</button><button data-v="eco">Ahorro</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="group-label">Música</p>
+      <div class="group">
+        <button class="cell" id="set-spotify">
+          <span class="cell-ic" style="background:#000"><i data-ic="spotify"></i></span>
+          <span class="lbl">Spotify</span>
+          <span class="cell-val" id="set-sp-status"></span>
+        </button>
+      </div>
+
+      <div class="pc-only" id="set-remote-box" hidden>
+        <p class="group-label">Celular</p>
+        <div class="group">
+          <div class="cell">
+            <span class="cell-ic" style="background:#34C759"><i data-ic="phone"></i></span>
+            <span class="lbl">Usar desde el celular<small class="cell-sub">Mismo Wi-Fi que esta PC</small></span>
+            <button class="switch" id="set-remote-on" role="switch" aria-checked="false" title="Usar desde el celular"></button>
+          </div>
+          <button class="cell" id="set-remote-pair" hidden>
+            <span class="cell-ic" style="background:#0A84FF"><i data-ic="plus"></i></span>
+            <span class="lbl">Conectar un celular</span>
+            <span class="cell-val">Código QR</span>
+          </button>
+          <div id="set-remote-devices"></div>
+        </div>
+      </div>
+
+      <p class="group-label">Privacidad</p>
+      <div class="group">
+        <button class="cell" id="set-pin">
+          <span class="cell-ic" style="background:#5856D6"><i data-ic="lock"></i></span>
+          <span class="lbl">Candado de notas privadas<small class="cell-sub">Mantén presionada una nota → Hacer privada</small></span>
+          <span class="cell-val" id="set-pin-status"></span>
+        </button>
+      </div>
+
+      <p class="group-label">Tus datos</p>
+      <div class="group">
+        <button class="cell" id="set-export">
+          <span class="cell-ic" style="background:#30B0C7"><i data-ic="download"></i></span>
+          <span class="lbl">Exportar notas</span>
+        </button>
+        <label class="cell">
+          <span class="cell-ic" style="background:#34C759"><i data-ic="upload"></i></span>
+          <span class="lbl">Importar notas</span>
+          <input type="file" id="set-import" accept="application/json,.json" hidden>
+        </label>
+      </div>
+      <p class="foot">Tus notas se guardan solo en este equipo 💖</p>
+    </div>
+  </section>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="fx" class="fx" aria-hidden="true"></div>
+
+  <script src="sync.js"></script>
+  <script src="icons.js"></script>
+  <script src="spotify.js"></script>
+  <script src="lyrics.js"></script>
+  <script src="app.js"></script>
+  <script src="extras.js"></script>
+</body>
+</html>
