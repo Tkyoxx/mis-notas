@@ -187,4 +187,8 @@ Las fuentes (Inter, Nunito, Caveat, Dancing Script, Playfair Display, Cormorant 
 
 Las capturas usan notas de ejemplo.
 
+## Licencia
+
+[MIT](LICENSE)
+
 <img src="docs/img/divider.svg" width="100%" alt="">
